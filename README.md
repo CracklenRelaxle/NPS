@@ -11,6 +11,16 @@ The following video is your new bible: `https://www.youtube.com/watch?v=q3_2nU5v
 
 When pulling the git `https://github.com/snort3/libml`, configure.sh should come as well as train.py 
 
+train.py needs all of your labeled and formated datapoints. 
 
-
+Within the container, run:
+```
+python3 venv venv
+#### break for python3 terminal to load #####
+source venv /bin/activate
+pip install tensor
+## need tensorflow dependency for neural network API
+./train.py
+snort -q --talos --lua 'trace = { modules = { snort_ml = { all = 1 } } }; snort_ml_engine = { http_param_model = "snort.model" }; snort_ml = {};' -r <desired pcap for analysis> 
+```
 ## current state
