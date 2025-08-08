@@ -7,8 +7,9 @@ Option 2 is to download the container for snort 3 on docker hub `https://hub.doc
 
 Now that we have snort installed, SnortML is going to need libML from `https://github.com/snort3/libml` 
 ## training snortML
-The following video is your new bible: `https://www.youtube.com/watch?v=q3_2nU5vXz0&t=1276s` \
-When pulling the git `https://github.com/snort3/libml`, configure.sh should come as well as train.py \
+The following video is your new bible: `https://www.youtube.com/watch?v=q3_2nU5vXz0&t=1276s` 
+
+When pulling the git `https://github.com/snort3/libml`, configure.sh should come as well as train.py 
 
 
 
