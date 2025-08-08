@@ -18,6 +18,8 @@ data = [
     { 'str':'foo=1%27%20or%201=1%2D%2D', 'attack':1 }
 ]
 ```
+attack:0 means benign, 1 means malicious
+
 Within the container, run:
 ```
 python3 venv venv
