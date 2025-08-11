@@ -12,7 +12,7 @@ The following video is your new bible: `https://www.youtube.com/watch?v=q3_2nU5v
 When pulling the git `https://github.com/snort3/libml`, configure.sh should come as well as train.py 
 
 train.py needs all of your labeled and formated datapoints as such:
-```
+```python3
 data = [
     { 'str':'foo=1', 'attack':0 },
     { 'str':'foo=1%27%20or%201=1%2D%2D', 'attack':1 }
@@ -21,7 +21,7 @@ data = [
 attack:0 means benign, 1 means malicious
 
 Within the container, run:
-```
+```python3
 python3 venv venv
 #### break for python3 terminal to load #####
 source venv /bin/activate
