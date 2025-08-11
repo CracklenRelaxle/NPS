@@ -21,7 +21,7 @@ data = [
 attack:0 means benign, 1 means malicious
 
 Within the container, run:
-```python3
+```bash
 python3 venv venv
 #### break for python3 terminal to load #####
 source venv /bin/activate
