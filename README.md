@@ -34,5 +34,7 @@ snort -q --talos --lua 'trace = { modules = { snort_ml = { all = 1 } } }; snort_
 docker hub containers for snort3 downloaded. VM died while compiling LibML and snapshot had to be reverted. Next step is to reinstall LibML into my container. I also want a seperate instance of just the snort3 ELF file to see if it operates differently than the containers they have on dockerhub. Also need to download datasets. preferred dataset is as follows: `https://github.com/antoine-lemay/Modbus_dataset`
 # Connect to Hamming
 FQDN: hamming.uc.nps.edu
+
 `ssh william.k.harris@hamming-sub1.uc.nps.edu`
+
 using the s commands: `sinfo` `srun` `salloc` and their man pages, gain a beards or genai partition for compute
