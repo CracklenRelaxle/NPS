@@ -8,7 +8,7 @@ Run PCAP through Zeek
 Aggregate or correlate logs together
 Singapore university dataset?
 Electric power maybe
-simulated - ic104
+simulated - iec104
 backnet for AC
 Sergio
 gaining benign dataset with various items and then attack
