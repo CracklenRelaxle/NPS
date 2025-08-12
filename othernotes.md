@@ -16,3 +16,9 @@ gaining benign dataset with various items and then attack
 Siam system and splunk?
 Use zeek logs on static data
 Maybe compare a PCAP with dominion energy
+
+For getting iec104: idaho national labs
+                    ece people
+                    proffessor giovanna erritti
+                    
+                    
