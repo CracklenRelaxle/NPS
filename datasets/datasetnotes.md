@@ -1,4 +1,4 @@
-Currently in "$HOME\Downloads\Dataset\unziped\20200428_UOWM_IEC104_Dataset_c_sc_na_1\20200428_UOWM_IEC104_Dataset_c_sc_na_1_iecserver7\" \
+File locally hosted at `"$HOME\Downloads\Dataset\unziped\20200428_UOWM_IEC104_Dataset_c_sc_na_1\20200428_UOWM_IEC104_Dataset_c_sc_na_1_iecserver7\"` \
 Dataset pulled from: `https://ieee-dataport.org/documents/iec-60870-5-104-intrusion-detection-dataset#files` \
 
 What fields are useful?
@@ -10,5 +10,6 @@ To extract fields, use
 ```powershell
 cat .\20200428_UOWM_IEC104_Dataset_c_sc_na_1_iecserver7.pcap_Flow.csv | foreach {$_.split(',')[1]
 ```
+## current state
 Need to use zeek to generate logs about PCAP, then compare Flow ID of the csv with Zeek ID to label zeek logs as malicious or benign
 
