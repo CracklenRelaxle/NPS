@@ -31,7 +31,7 @@ pip install tensor
 snort -q --talos --lua 'trace = { modules = { snort_ml = { all = 1 } } }; snort_ml_engine = { http_param_model = "snort.model" }; snort_ml = {};' -r <desired pcap for analysis> 
 ```
 ## current state
-docker hub containers for snort3 downloaded. VM died while compiling LibML and snapshot had to be reverted. Next step is to reinstall LibML into my container. I also want a seperate instance of just the snort3 ELF file to see if it operates differently than the containers they have on dockerhub. Also need to download datasets. preferred dataset is as follows: `https://github.com/antoine-lemay/Modbus_dataset`
+SnortML is designed for http and ssh, hence the lua text above having http_param_model. I do not believe snort will be the future of this project, although there is a lot to learn from what talos created already.
 # Connect to Hamming
 FQDN: hamming.uc.nps.edu
 
