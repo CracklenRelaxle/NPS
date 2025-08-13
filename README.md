@@ -38,3 +38,6 @@ FQDN: hamming.uc.nps.edu
 `ssh william.k.harris@hamming-sub1.uc.nps.edu`
 
 using the s commands: `sinfo` `srun` `salloc` and their man pages, gain a beards or genai (Omniverse) partition for compute
+
+# splunk MLTK
+# zeek
