@@ -10,6 +10,8 @@ To extract fields, use
 ```powershell
 cat .\20200428_UOWM_IEC104_Dataset_c_sc_na_1_iecserver7.pcap_Flow.csv | foreach {$_.split(',')[1]
 ```
+P
 ## current state
 Need to use zeek to generate logs about PCAP, then compare Flow ID of the csv with Zeek ID to label zeek logs as malicious or benign
+
 
