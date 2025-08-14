@@ -28,6 +28,7 @@ find ~ -type f -name "*pcap" -exec zeek -r {} LogAscii::use_json=T \;
 #still throws checksum issue, going back to
 find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
 ```
+seems successful. ran `zeek -C -r LogAscii::use_json=T` on the largest file to ensure that Zeek appends the logs and doesn't replace. It does append. Moving logs to hamming
 
 ## current state
 Need to use zeek to generate logs about PCAP, then compare Flow ID of the csv with Zeek ID to label zeek logs as malicious or benign
