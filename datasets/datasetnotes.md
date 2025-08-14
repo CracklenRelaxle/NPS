@@ -17,6 +17,8 @@ After installation, edit `/etc/environment` file and add `/opt/zeek/bin` to $PAT
 conducted:
 ```bash
 find ~ -type f -name "*pcap" -exec zeek -r {} \;
+# got error about check sums, recommended use option -C. rerunning with -C
+find ~ -type f -name "*pcap" -exec zeek -C -r {} \;
 ```
 
 ## current state
