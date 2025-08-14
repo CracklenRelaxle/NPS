@@ -21,6 +21,10 @@ find ~ -type f -name "*pcap" -exec zeek -r {} \;
 find ~ -type f -name "*pcap" -exec zeek -C -r {} \;
 # format is terrible, trying with LogAscii::use_json=T
 find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
+#realized there are split pcaps with "only" in the name, removing those with
+find ../ -type f -name "*only.pcap" -exec rm {} \;
+#now seeing if that fixes the checksum problem
+find ~ -type f -name "*pcap" -exec zeek -r {} LogAscii::use_json=T \;
 ```
 
 ## current state
