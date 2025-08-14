@@ -19,6 +19,7 @@ conducted:
 find ~ -type f -name "*pcap" -exec zeek -r {} \;
 # got error about check sums, recommended use option -C. rerunning with -C
 find ~ -type f -name "*pcap" -exec zeek -C -r {} \;
+# format is terrible, trying with 
 ```
 
 ## current state
