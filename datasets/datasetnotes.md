@@ -25,6 +25,8 @@ find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
 find ../ -type f -name "*only.pcap" -exec rm {} \;
 #now seeing if that fixes the checksum problem
 find ~ -type f -name "*pcap" -exec zeek -r {} LogAscii::use_json=T \;
+#still throws checksum issue, going back to
+find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
 ```
 
 ## current state
