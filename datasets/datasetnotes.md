@@ -19,7 +19,8 @@ conducted:
 find ~ -type f -name "*pcap" -exec zeek -r {} \;
 # got error about check sums, recommended use option -C. rerunning with -C
 find ~ -type f -name "*pcap" -exec zeek -C -r {} \;
-# format is terrible, trying with 
+# format is terrible, trying with LogAscii::use_json=T
+find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
 ```
 
 ## current state
