@@ -141,7 +141,72 @@ unix_timestamps = convert_to_unix(timestamp)
 #function to add timestamps to new csv here
 new_csv("$USER\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv", ".\\testfile.csv", unix_timestamps)
 ```
+Lastly - tada! the script parses all csv in a given folder, and sends them to "csvfiles" directory of chosen location with appended unix time.
+```python
+#!/bin/python3
+from datetime import datetime
+import time
+import pandas as pd
+import os
 
+def get_timestamp(filename):
+    # input the file to the panda DF with error handle
+    try:
+        df = pd.read_csv(filename)
+    except:
+        print("CSV not properly loaded")
+
+    # return just the values of the timestamp as a list
+    return df['Timestamp'].values
+
+def convert_to_unix(timestamp_list):
+    # Define the format of the input timestamp
+    unix_time = []
+    format_str = "%d/%m/%Y %I:%M:%S %p"
+    
+    # Parse each string in the list as datatime object
+    for i in timestamp_list:
+        dt = datetime.strptime(i, format_str)
+    
+    # Convert to Unix timestamp and add it to the unix_time list
+        unix_time.append(int(time.mktime(dt.timetuple())))
+    
+    return unix_time
+
+def new_csv(infile, outfile, timestamplist):
+    #add the unix time to the dataframe as a column
+    df = pd.read_csv(infile)
+    df['unixtimestamp'] = timestamplist
+
+    print(f"new file {outfile} should be created")
+    #create the file
+    df.to_csv(outfile, index=False)
+
+# get user input in the crudest way possible:
+print("Please input the name of the directory with files to parse:")
+indir = input()
+print("Please input the full path of the desired output directory:")
+outdir = input()
+
+#create directory for output:
+os.makedirs(f"{outdir}\\csvfiles", exist_ok=True)
+print(f"Directory '{outdir}\\csvfiles' created.")
+
+#iterate through the given directory
+filename = 1
+for i in os.listdir(indir):
+    if i.endswith('csv'):
+        fullpath = os.path.join(indir, i)
+        print(fullpath)
+
+    #create list of timestamps
+        timestamp = get_timestamp(fullpath)
+        unix_timestamps = convert_to_unix(timestamp)
+
+    #function to add timestamps to new csv here
+        new_csv(fullpath, f"{outdir}\\csvfiles\\{filename}.csv", unix_timestamps)
+        filename += 1
+```
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
 
