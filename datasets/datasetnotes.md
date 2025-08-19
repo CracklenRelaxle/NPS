@@ -92,6 +92,55 @@ timestamp = get_timestamp("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20
 unix_timestamp = convert_to_unix(timestamp)
 print(f"Unix time: {unix_timestamp}")
 ```
+This next iteration takes a hard coded input file, hard coded output file, and creates a new CSV with the unix timestamp
+```python3
+#!/bin/python3
+from datetime import datetime
+import time
+import pandas as pd
+
+def get_timestamp(filename):
+    # input the file to the panda DF with error handle
+    try:
+        df = pd.read_csv(filename)
+    except:
+        print("CSV not properly loaded")
+
+    # return just the values of the timestamp as a list
+    return df['Timestamp'].values
+
+
+
+
+def convert_to_unix(timestamp_list):
+    # Define the format of the input timestamp
+    unix_time = []
+    format_str = "%d/%m/%Y %I:%M:%S %p"
+    
+    # Parse each string in the list as datatime object
+    for i in timestamp_list:
+        dt = datetime.strptime(i, format_str)
+    
+    # Convert to Unix timestamp and add it to the unix_time list
+        unix_time.append(int(time.mktime(dt.timetuple())))
+    
+    return unix_time
+
+def new_csv(infile, outfile, timestamplist):
+    #add the unix time to the dataframe as a column
+    df = pd.read_csv(infile)
+    df['unixtimestamp'] = timestamplist
+
+    #create the file
+    df.to_csv(outfile, index=False)
+
+#create list of timestamps
+timestamp = get_timestamp("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv")
+unix_timestamps = convert_to_unix(timestamp)
+
+#function to add timestamps to new csv here
+new_csv("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv", ".\\testfile.csv", unix_timestamps)
+```
 
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
