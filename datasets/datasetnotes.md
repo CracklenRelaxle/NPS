@@ -30,6 +30,33 @@ find ~ -type f -name "*pcap" -exec zeek -C -r {} LogAscii::use_json=T \;
 ```
 seems successful. ran `zeek -C -r LogAscii::use_json=T` on the largest file to ensure that Zeek appends the logs and doesn't replace. It does append. Moving logs to hamming
 
+to marry the attack values with logs, I will attempt to use timestamps + flow id. In order to match the timestamps of the logs vs the timestamp of the CSV, I will conver the csv time to unix time. The following is script 1 to do so:
+```python
+#!/bin/python3
+from datetime import datetime
+import time
+
+def convert_to_unix(timestamp_str):
+    # Define the format of the input timestamp
+    format_str = "%d/%m/%Y %I:%M:%S %p"
+    
+    # Parse the string into a datetime object
+    dt = datetime.strptime(timestamp_str, format_str)
+    
+    # Convert to Unix timestamp
+    unix_time = int(time.mktime(dt.timetuple()))
+    
+    return unix_time
+
+# Example usage
+timestamp = "28/04/2020 09:15:31 PM"
+unix_timestamp = convert_to_unix(timestamp)
+print(f"Unix time: {unix_timestamp}")
+```
+This script appears to do exactly what is needed, as the output is `1588122931`. Now I need to make the script receive a filename as an argument and create a new csv with the desired unix timestamp 
+```python3
+
+```
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
 
