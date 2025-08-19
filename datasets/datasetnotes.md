@@ -88,7 +88,7 @@ def convert_to_unix(timestamp_list):
     return unix_time
 
 #call the functions
-timestamp = get_timestamp("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv")
+timestamp = get_timestamp("$USER\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv")
 unix_timestamp = convert_to_unix(timestamp)
 print(f"Unix time: {unix_timestamp}")
 ```
@@ -135,11 +135,11 @@ def new_csv(infile, outfile, timestamplist):
     df.to_csv(outfile, index=False)
 
 #create list of timestamps
-timestamp = get_timestamp("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv")
+timestamp = get_timestamp("$USER\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv")
 unix_timestamps = convert_to_unix(timestamp)
 
 #function to add timestamps to new csv here
-new_csv("C:\\Users\\wkenn\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv", ".\\testfile.csv", unix_timestamps)
+new_csv("$USER\\Downloads\\iec104data\\csvfiles\\20200428_UOWM_IEC104_Dataset_c_sc_na_1_attacker2.pcap_Flow.csv", ".\\testfile.csv", unix_timestamps)
 ```
 
 ## current state
