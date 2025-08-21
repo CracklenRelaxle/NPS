@@ -244,7 +244,7 @@ main()
 ```
 This first function creates a regex string of a given row in the csv for use against the log data. I now need to make the function that finds the correct log. Then I need to make everything iterative.
 
-Unfortunately, these unix timestamps don't match. I do not understand why, but the timestamps of the CSV don't match up to the zeek logs or the PCAP. I do not know where these timestamps were pulled from. Working theory is that my unix conversion is not taking timestamp into account, and that the timestamps given are not in UTC. Will see if there is a delta between the greatest timestamp of both the CSVs and the logfiles. Initial analysis shows a difference of 7 hours; the same amount of time difference between greece and here. 
+Unfortunately, these unix timestamps don't match. I do not understand why, but the timestamps of the CSV don't match up to the zeek logs or the PCAP. I do not know where these timestamps were pulled from. Working theory is that my unix conversion is not taking timezone into account, and that the timestamps given are not in UTC. Will see if there is a delta between the greatest timestamp of both the CSVs and the logfiles. Initial analysis shows a difference of 7 hours; the same amount of time difference between greece and here. 
 
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
