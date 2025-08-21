@@ -207,6 +207,31 @@ for i in os.listdir(indir):
         new_csv(fullpath, f"{outdir}\\csvfiles\\{filename}.csv", unix_timestamps)
         filename += 1
 ```
+Now with the timestamps, I will match as much data as possible between each log and each row of the csv. I will start with a nested for loop going through each csv file and checking every line of all the log files. I can copy the for loop from the previous code, but i will want all output to go to stdout first, so it will be commented out. All logs have source dest ip and port and timestamp except for dhcp.log, weird.log, and packet_filter.log. This is because packet_filter.log should accept all traffic (it logs the bpf used), dhcp doesn't use destination ips or ports at all, and weird.log has 1 entry for a seemingly malformed packet. I will therefore be `using the following columns in my csv: unixtimestamp,Src IP,Src Port,Dst IP,Dst Port.` The more data I use, the less likely I am to have data collision of any kind.
+```python3
+#!/bin/python3
+import pandas as pd
+import os
+
+/*
+# get user input in the crudest way possible:
+print("Please input the name of the directory with files to parse:")
+indir = input()
+print("Please input the full path of the desired output directory:")
+outdir = input()
+
+#create directory for output:
+os.makedirs(f"{outdir}\\logswithattackvalues", exist_ok=True)
+print(f"Directory '{outdir}\\logswithattackvalues' created.")
+
+#iterate through the given directory
+for i in os.listdir(indir):
+    if i.endswith('log'):
+        fullpath = os.path.join(indir, i)
+        print(fullpath)
+
+*/
+```
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
 
