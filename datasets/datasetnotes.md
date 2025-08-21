@@ -244,7 +244,7 @@ main()
 ```
 This first function creates a regex string of a given row in the csv for use against the log data. I now need to make the function that finds the correct log. Then I need to make everything iterative.
 
-Unfortunately, these unix timestamps don't match. I do not understand why, but the timestamps of the CSV don't match up to the zeek logs or the PCAP. I do not know where these timestamps were pulled from. Working theory is that my unix conversion is not taking timezone into account, and that the timestamps given are not in UTC. Will see if there is a delta between the greatest timestamp of both the CSVs and the logfiles. Initial analysis shows a difference of 7 hours; the same amount of time difference between greece and here. 
+Unfortunately, these unix timestamps don't match. I do not understand why, but the timestamps of the CSV don't match up to the zeek logs or the PCAP. I do not know where these timestamps were pulled from. Working theory is that my unix conversion is not taking timezone into account, and that the timestamps given are not in UTC. Will see if there is a delta between the greatest timestamp of both the CSVs and the logfiles. Initial analysis shows a difference of 7 hours; the same amount of time difference between greece and here. \
 finding the largest value of the csv unix timestamps:
 ```powershell
 $largest = 0
@@ -255,7 +255,7 @@ Now for the logfiles:
 ```powershell
 cat * | foreach {if ($_.split(',')[0].split(':')[1] -gt $loglargest){$loglargest = $_.split(',')[0].split(':')[1]}}
 ```
-output is `1588113251.577329`
+output is `1588113251.577329` \
 delta is 25210, which divided by 3600 is ~7 hours. Unfortunately the 10 second remainder is a very large gap, making the disparity of granularity of the timestamps large enough I may want to remove the last digit in my regex. testing the regex with no timestamp, its clear there are too many results to pair a log with a csv row:
 ```powershell
 cat * | where {$_ -match "192\.168\.1\.22.*137.*192\.168\.1\.255.*137"} | Measure-Object -line
