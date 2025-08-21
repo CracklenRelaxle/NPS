@@ -242,7 +242,7 @@ def main():
     
 main()
 ```
-This first function creates a regex string of a given row in the csv for use against the log data. I now need to make everything iterative.
+This first function creates a regex string of a given row in the csv for use against the log data. I now need to make the function that finds the correct log. Then I need to make everything iterative.
 
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
