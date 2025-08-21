@@ -212,26 +212,38 @@ Now with the timestamps, I will match as much data as possible between each log 
 #!/bin/python3
 import pandas as pd
 import os
+import re
 
-/*
-# get user input in the crudest way possible:
-print("Please input the name of the directory with files to parse:")
-indir = input()
-print("Please input the full path of the desired output directory:")
-outdir = input()
+#function for reading the file and extracting regex string to apply to logs
+def make_match_string(infile, index):
+    df = pd.read_csv(infile)
+  #  print(df.loc[index])
 
-#create directory for output:
-os.makedirs(f"{outdir}\\logswithattackvalues", exist_ok=True)
-print(f"Directory '{outdir}\\logswithattackvalues' created.")
+    #start creating my regex bash with each column
+    unixtimestamp = f"{df['unixtimestamp'].loc[index]}"
+    srcport = f"{df['Src Port'].loc[index]}"
+    dstport = f"{df['Dst Port'].loc[index]}"
+    srcip = f"{df['Src IP'].loc[index]}"
+    dstip = f"{df['Dst IP'].loc[index]}"
 
-#iterate through the given directory
-for i in os.listdir(indir):
-    if i.endswith('log'):
-        fullpath = os.path.join(indir, i)
-        print(fullpath)
+    #doctor up IPs to escape "."
+    srcip = srcip.replace(".", "\.")
+    dstip = dstip.replace(".", "\.")
 
-*/
+    #now combine my unholy regex
+    regexstring = f"{unixtimestamp}.*{srcip}.*{srcport}.*{dstip}.*{dstport}"
+
+    return regexstring
+
+def main():
+    fullpath = "C:\\Users\\wkenn\\Downloads\\iec104data\\csvfilesandunixtime\\1.csv"
+    index = 1
+    print(make_match_string(fullpath, index))
+    
+main()
 ```
+This first function creates a regex string of a given row in the csv for use against the log data. I now need to make everything iterative.
+
 ## current state
 Need to match zeek logs to CSV malicious and benign labels
 
