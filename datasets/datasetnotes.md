@@ -271,6 +271,5 @@ cat * | where {$_ -match "158809784.*192\.168\.1\.22.*137.*192\.168\.1\.255.*137
 ```
 still no hits. Back to the drawing board.
 ## current state
-Need to match zeek logs to CSV malicious and benign labels
-
+Interem Packet capture -> CSV to do my own PCAP processing
 
